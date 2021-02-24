@@ -10,8 +10,9 @@ const {TakingExam,Exam,StudentTakingExam} = require("./models/ExamModel")
 // DATABASE CONNECTION CONFIGURATION
 // BU KONFIGURASYON DEGISTIRILEREK FARKLI VERITABANLARINA BAGLANILABILIR
 var pool = new Pool({
-    host: process.env.PGHOST,
-    user:process.env.USER,
+    host: "myclouddatabase.postgres.database.azure.com",
+    user:"burhan@myclouddatabase",
+    password:"Main12345",
     database:"online_exam_system"
 });
 
