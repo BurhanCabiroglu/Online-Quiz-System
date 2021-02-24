@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Sınavlar</title>
+  <link href="../images/education.png" rel="icon">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <style>
+    div div li span{
+        float: right;
+    }
+  </style>
+
+  <style>
+  
+  </style>
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Öğrenci Sistemi</div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light" onclick="location.href='./dashboard'" >Ana Sayfa</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" style="font-weight: 800;"  onclick="location.href='./exams'" >Sınavlar</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" onclick="location.href='./results'" >Notlar</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+       
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" ><%= user.firstname+" "+user.surname +"  "%><button id="logoutBtn" class="btn btn-danger">Log out </button></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid" id="MainContainer">
+
+
+
+        <h1 class="mt-4">Sınavlar</h1>
+        <br>
+
+        <div class="card mt-3">
+            <div class="list-group list-group-flush">
+             
+
+              <% for(var i = 0;i < exams.length; i++){ %> 
+                <li class="list-group-item checked" > 
+                  <%= exams[i].name  %> 
+                  <span>
+                    <button class="btn btn-primary" id="<%=exams[i].id %>"
+                       onclick='takeExam(this.id)'>
+                      Sınava Gir
+                    </button>
+                  </span> 
+                 </li>
+              <% } %> 
+            </div>
+        </div>
+     
+
+
+
+      </div>
+    </div>
+
+
+
+
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+  <script type="text/javascript" src="../css/script.js"></script>
+  <script>
+
+function takeExam(id){
+     
+     var form = document.createElement("form")
+     form.setAttribute("method", "POST"); 
+     
+     form.setAttribute("action", "./takexam/"+id);  
+     var fn = document.createElement("button"); 
+     fn.setAttribute("type", "submit"); 
+     
+     form.appendChild(fn)
+     document.getElementsByTagName("body")[0].appendChild(form)
+     fn.click()
+}
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Sınav Hazırla</title>
+  <link href="../images/education.png" rel="icon">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <style>
+    .selected{
+      color : "#337ab7";
+    }
+    #image{
+      width: 30%;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      margin: 0px auto;
+    }
+    .d-center{
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      margin: 0px auto;
+
+    }
+    #welcome-label{
+      font-size: 200%;
+      color: #3e3e3e;
+    }
+  </style>
+
+  
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Öğretmen Sistemi</div>
+      <div class="list-group list-group-flush">
+        <a href="dashboard" class="list-group-item list-group-item-action bg-light">Ana Sayfa</a>
+        <a href="examlist" class="list-group-item list-group-item-action bg-light">Sınavlar</a>
+        <a href="points" class="list-group-item list-group-item-action bg-light">Öğrenci Notları</a>
+        <a href="createxam" class="list-group-item list-group-item-action bg-light" style="font-weight: 800;">Sınav Hazırla</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+       
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link"><%= user.firstname+" "+user.surname +"  "%><button id="logoutBtn" class="btn btn-danger">Log out </button></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid" id="MainContainer">
+        <h1 class="mt-4">Sınav Hazırlama Sistemi</h1>
+        <br>
+
+      <form action="./createxam" method="POST">
+        
+        <div class="card mt-3">
+          <div class="form-group mt-3">   
+            <div class="form-group col-md-6"><h4>Genel Bilgiler</h4></div>
+                <div class="form-group col-md-6">
+                  <label for="prepared">Sınavı Hazırlayan</label>
+                  <input type="text" class="form-control" id="prepared" value="<%= user.firstname+" "+user.surname +"  "%>" disabled>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="examName">Sınav Adı</label>
+                  <input type="text" class="form-control" name="examname" placeholder="Sınav Adı">
+                </div>
+              
+              
+                <div class="form-row col-md-6 mt-4">
+                    <div class="form-group col-md-6">
+                      <label for="startdate">Başlangıç Tarihi</label>
+                      <input type="text" class="form-control" name="startdate" placeholder="Başlangıç Tarihi">
+                    </div>
+            
+                  
+                  <div class="form-group col-md-6">
+                    <label for="enddate">Bitiş Tarihi</label>
+                    <input type="text" class="form-control" name="enddate" placeholder="Bitiş Tarihi">
+                  </div>
+                </div>
+
+                <div class="form-row col-md-6 mt-4">
+                  <div class="form-group col-md-6">
+                    <select class="custom-select" id="selector" name="questioncounter">
+                      <option value="0">Soru Sayısı</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                    </select>
+                  </div>
+          
+                
+                <div class="form-group col-md-6">
+                  <button class="btn btn-primary" type="button" onclick="fetchClick()" >Ayarla</button>
+                </div>
+              </div>
+          </div>
+      </div>
+
+
+        <div class="card mt-3">
+          <div class="form-group col-md-6 mt-3">
+             <h4>Genel Bilgiler</h4><p id="setp">0 Soru Ayarlandı</p>
+            </div>
+          <div class="list-group list-group-flush" id="questions">
+              
+          </div>
+
+          
+      </div>
+
+
+      <div class="card mt-3" id="questions">
+        <div class="list-group list-group-flush">
+            <li class="list-group-item checked" ><span><button type="submit" class="btn btn-primary">Sınavı Kaydet</button></span></li>
+        </div>
+        
+      </div>
+     </form>
+        
+    </div>
+
+
+    </div>
+  </div>
+
+  <script>
+
+    function prepareQuestion(qid){
+     return ' <li class="list-group-item checked question"><div class="form-group"><h5>Soru'+qid+'</h5><label>Soru Metni</label>'+
+            '<textarea class="form-control" name="textarea'+qid+'"></textarea><div class="form-inline mt-2">'+
+            '<label>A : </label> <input type="text" class="form-control ml-2" name="qa'+qid+'" style="width: 90%;"></div>'+
+            '<div class="form-inline mt-2"><label>B : </label> <input type="text" class="form-control ml-2" name="qb'+qid+'"style="width: 90%;"></div>'+
+            '<div class="form-inline mt-2"><label>C : </label> <input type="text" class="form-control ml-2" name="qc'+qid+'" style="width: 90%;"></div>'+
+            '<div class="form-inline mt-2"><label>D : </label> <input type="text" class="form-control ml-2" name="qd'+qid+'" style="width: 90%;"></div>'+
+            '<div class="form-inline mt-2"><label>Doğru Cevap : </label> <select class="custom-select ml-2" name="ta'+qid+'"><option value="1">A</option><option value="2">'+
+            'B</option><option value="3">C</option><option value="4">D</option></select></div></div></li>'
+
+    }
+
+    
+
+    function fetchClick(){
+      console.log("click işte")
+      var select = document.getElementById("selector")
+      var questionsPanel = document.getElementById("questions")
+      var qlist = document.getElementsByClassName("question")
+      var setp = document.getElementById("setp")
+      var startIndex  = qlist.length;
+      console.log(startIndex)
+      setp.innerText = select.value +" soru ayarlandı"
+      if(qlist.length<select.value){
+        for (let index = startIndex; index < select.value; index++) {
+            questionsPanel.innerHTML+=prepareQuestion(index+1)          
+        }
+      }
+      else{
+        questionsPanel.innerHTML="";         
+        for (let index = startIndex; index < select.value; index++) {
+            questionsPanel.innerHTML+=prepareQuestion(index+1)          
+        }
+      }
+    }
+    
+  </script>
+  <script type="text/javascript" src="../css/script.js"></script>
+</body>
+
+</html>

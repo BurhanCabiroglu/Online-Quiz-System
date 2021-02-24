@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Öğrenci Notları</title>
+  <link href="../images/education.png" rel="icon">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <style>
+    .selected{
+      color : "#337ab7";
+    }
+    #image{
+      width: 30%;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      margin: 0px auto;
+    }
+    .d-center{
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      margin: 0px auto;
+
+    }
+    #welcome-label{
+      font-size: 200%;
+      color: #3e3e3e;
+    }
+  </style>
+
+  
+
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Öğretmen Sistemi</div>
+      <div class="list-group list-group-flush">
+        <a href="dashboard" class="list-group-item list-group-item-action bg-light">Ana Sayfa</a>
+        <a href="examlist" class="list-group-item list-group-item-action bg-light">Sınavlar</a>
+        <a href="points" class="list-group-item list-group-item-action bg-light" style="font-weight: 800;">Öğrenci Notları</a>
+        <a href="createxam" class="list-group-item list-group-item-action bg-light">Sınav Hazırla</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+       
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link"><%= user.firstname+" "+user.surname +"  "%><button id="logoutBtn" class="btn btn-danger">Log out </button></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid" id="MainContainer">
+        <h1 class="mt-4">Öğrenci Notları</h1>
+        <br>
+
+        <div class="card mt-3">
+          <div class="list-group list-group-flush">
+            <% for(var i = 0; i< points.length; i++ ){ %> 
+              <li class="list-group-item" style="text-align: center;">
+
+                <span style="float: left;" class="h5"><%= points[i].student %> </span>
+
+                <span class="text-secondary h6"><%= points[i].exam %> </span>
+                
+                <span style="float: right;" class="text-secondary h4"><%= points[i].score.toFixed(1) %> </span>
+              </li>
+              <% } %> 
+            
+          </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../css/script.js"></script>
+</body>
+
+</html>

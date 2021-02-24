@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giris yap</title>
+
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="icon" href="images/education.png">
+    <style>
+        body{
+            background-color: #eeeeee;
+        }
+        .wrapper{
+            margin: 80px;
+        }
+        .form-signin{
+            max-width: 380px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 15px 40px 50px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+        }
+        .form-signin .form-signin-heading{
+            margin-bottom: 30px;
+        }
+        .form-signin input[type="text"], .form-signin input[type="password"]{
+            margin-bottom: 15px;
+        
+        }
+        .form-signin .form-control{
+            padding: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        
+        <form class="form-signin" action="/login" method="POST">
+            <div class="text-center">
+                <img src="../images/education.png" width="30%">
+            </div>
+            <br>
+            <h2 class="form-signin-heading text-center">Giriş yap</h2>
+            <input type="text" class="form-control" name="userno" placeholder="Ogrenci Numarası" autofocus="">
+            <input type="password" class="form-control" name="password" placeholder="Parola"  autofocus="">
+           
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Giriş yap</button>
+            <br>
+
+
+
+
+
+            <% if (messages.error) { %>
+                <br> <div class="d-inline"><p><img src="../images/cancel.png" width="6%">   Hatalı Kullanıcı Numarası veya Parola</p></div>
+            <% } %>
+                
+            <div class="d-inline"><p>Hesabınız yok mu? <a class="bg-light" onclick="location.href='./signup'">Kayıt Ol</a></p></div>
+            </form>
+            
+
+            
+   
+
+           
+            
+    </div>
+</body>
+</html>

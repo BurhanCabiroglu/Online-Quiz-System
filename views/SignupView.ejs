@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt ol</title>
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" href="../images/education.png">
+
+    <style>
+        body{
+            background-color: #eeeeee;
+        }
+        .wrapper{
+            margin: 80px;
+        }
+        .form-signin{
+            max-width: 380px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 15px 40px 50px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+        }
+        .form-signin .form-signin-heading{
+            margin-bottom: 30px;
+        }
+        .form-signin input[type="text"], .form-signin input[type="password"]{
+            margin-bottom: 15px;
+        
+        }
+        .form-signin .form-control{
+            padding: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <form class="form-signin" method="POST" action="./signup" id="form">
+            <div class="text-center">
+                <img src="../images/education.png" width="30%">
+            </div>
+            <br>
+            
+            <h2 class="form-signin-heading text-center">Kayıt ol</h2>
+
+            <input type="text" class="form-control" name="firstName" placeholder="Ad" required="" autofocus="">
+            <input type="text" class="form-control" name="lastName" placeholder="Soyad" required="" autofocus="">
+            <input type="text" class="form-control" name="userNo" placeholder="Ogrenci Numarası" required="">
+            <input type="password" class="form-control" name="password" placeholder="Parola" required="" autofocus="">
+            <select class="custom-select" name="userType" form="form">
+                <option value="0">Öğrenci</option>
+                <option value="1">Öğretmen</option>
+            </select>
+            <br>
+            <br>
+           
+           
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Kayıt Ol</button>
+
+            <% if (err) { %>
+                <br> <div class="d-inline"><p><img src="../images/cancel.png" width="6%">  Hesap Oluşturulamadı</p></div>
+            <% } %>
+            </form>
+    </div>
+</body>
+</html>
