@@ -16,9 +16,16 @@ The project is an online exam system project. People can register to the system 
 
 
 
-### Dashboard Page
-<img src="https://github.com/BurhanCabiroglu/Online-Quiz-System/blob/main/images/student_dashboard.png" alt="login" width=80%>
+### Quiz Page
+<img src="https://github.com/BurhanCabiroglu/Online-Quiz-System/blob/main/images/quiz_page.png" alt="login" width=80%>
 
 
 ### Exams Page
 <img src="https://github.com/BurhanCabiroglu/Online-Quiz-System/blob/main/images/student_list_quiz.png" alt="login" width=80%>
+
+
+
+### Prepare Quiz Page
+<img src="https://github.com/BurhanCabiroglu/Online-Quiz-System/blob/main/images/create_quiz.png" alt="login" width=80%>
+
+
